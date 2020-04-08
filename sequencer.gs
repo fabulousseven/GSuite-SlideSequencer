@@ -145,12 +145,12 @@ function createSidebarHTML() {
     if(playLists != null && playLists.pl.length > 0) {
       for (var i = 0; i < playLists.pl.length; i++) {
         playLists.pl[i].name 
-        listString = listString + '<div class="block" ><span><h2>' + playLists.pl[i].name + '</h2>'
+        listString = listString + '<div class="block" ><span><h2>' + playLists.pl[i].name + '</h2><h3>' + playLists.pl[i].desc + '</h3>'
                                 + '<button class="gray" style="cursor:hand;" onclick="google.script.run.playFromPlaylist(\'' + playLists.pl[i].ids + '\')">Play</button>'
                                 + '<button class="gray" style="cursor:hand;" onclick="google.script.run.deletePlayList(\'' + playLists.pl[i].name + '\')">Delete</button>'
                                 + '<button class="blue" style="cursor:hand;" onclick="google.script.run.newFromPlaylist(\'' + playLists.pl[i].name + '\')">New From</button></span>'
         for (var j = 0; j < playLists.pl[i].ids.length; j++) {
-          listString = listString + '<p><span>' + playLists.pl[i].ids[j] + '</span><button style="margin-left:15px;cursor:hand;" onclick="google.script.run.selectSlide(\'' + playLists.pl[i].ids[j] + '\')">locate</button></p>';
+          listString = listString + '<p><a style="color:back; text-decoration: none;" href="javascript:google.script.run.selectSlide(\'' + playLists.pl[i].ids[j] + '\')"><div style="cursor:hand; border-radius: 8px;  background: #ffffff; border: 2px solid #eeeeee; border-width:2px; color:black; padding: 10px;  width: 140px;  height: 70px;">' + playLists.pl[i].ids[j] + '</div></a></p>';
         }
         listString = listString + '</div><hr/>'
       }
@@ -241,6 +241,7 @@ function onCreate() {
     }
     
     var playListEntry = {
+      desc: plDesc,
       name: plName,
       ids: playListIds
     }
